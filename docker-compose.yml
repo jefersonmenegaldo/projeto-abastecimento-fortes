@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  db:
+    image: jacobalberty/firebird:v5
+    restart: always
+    env_file:
+      - ".env"
+    ports:
+      - "${DB_PORT}:3050"
+    environment:
+      - FIREBIRD_DATABASE=${DB_NAME}
+      - FIREBIRD_USER=${DB_USER}
+      - FIREBIRD_PASSWORD=${DB_PASSWORD}
+
+    volumes:
+      - "/firebird"
+      - "/firebird/data"
+

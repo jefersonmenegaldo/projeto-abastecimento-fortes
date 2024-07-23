@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{44C178A6-E338-4694-B89B-9D6096EA4497}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ProjetoAbastecimento.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\tests\ProjetoAbastecimentoTest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ProjetoAbastecimento">
+        <MSBuild Projects="ProjetoAbastecimento.dproj"/>
+    </Target>
+    <Target Name="ProjetoAbastecimento:Clean">
+        <MSBuild Projects="ProjetoAbastecimento.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProjetoAbastecimento:Make">
+        <MSBuild Projects="ProjetoAbastecimento.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProjetoAbastecimentoTest">
+        <MSBuild Projects="..\tests\ProjetoAbastecimentoTest.dproj"/>
+    </Target>
+    <Target Name="ProjetoAbastecimentoTest:Clean">
+        <MSBuild Projects="..\tests\ProjetoAbastecimentoTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProjetoAbastecimentoTest:Make">
+        <MSBuild Projects="..\tests\ProjetoAbastecimentoTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ProjetoAbastecimento;ProjetoAbastecimentoTest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ProjetoAbastecimento:Clean;ProjetoAbastecimentoTest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ProjetoAbastecimento:Make;ProjetoAbastecimentoTest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
